@@ -352,7 +352,6 @@ company-assistant/
 │   ├── company_policies.md
 │   └── company_procedures.md
 ├── src/
-│   ├── agent.py
 │   ├── migrations.py
 │   ├── assistants/
 │   │   ├── classic/
