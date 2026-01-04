@@ -75,6 +75,7 @@ Criteria:
    even if you do not agree.
 5. Do not evaluate extra information in the actual response; if it contains
    the expected answer, it is ok.
+6. the answer must be in the same language of the query.
 
 Do not be too strict. If the assistant does not give all the complete answer it
 is ok; instead, if it provides a wrong answer or a not expected one you must
