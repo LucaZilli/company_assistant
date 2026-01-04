@@ -25,7 +25,6 @@ from src.shared.safety import get_safety_prompt
 from src.shared.usage_tracker import TokenUsage
 from src.shared.usage_tracker import tracker
 from src.shared.web_search import web_search_with_perplexity
-from src.shared.web_search import web_search_with_serper
 import warnings
 from langchain_core._api.deprecation import LangChainDeprecationWarning
 
@@ -145,7 +144,7 @@ class LangChainCompanyAssistant:
             Returns:
                 Summarized web results or relevant snippets.
             """
-            return web_search_with_serper(query)
+            return web_search_with_perplexity(query)
 
         doc_summaries = get_doc_summaries_prompt(self.documents)
         safety_guidelines = get_safety_prompt()
