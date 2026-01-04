@@ -50,9 +50,13 @@ class RoutingDecision(BaseModel):
         default=None,
         description='Question to ask if action is clarify',
     )
-    answer: str | None = Field(
+    answer_polite_refusal: str | None = Field(
         default=None,
-        description='Direct answer if action is blocked (polite refusal)',
+        description='Direct answer if action is `blocked` (polite refusal).',
+    )
+    answer_general_knowledge: str | None = Field(
+        default=None,
+        description='Direct answer if action is `llm_only` (general knowledge).',
     )
 
     @field_validator('action', mode='before')
@@ -88,14 +92,14 @@ Decide how to handle user queries.
    news and queries whose answer can change over time.
 3. LLM_ONLY: For general knowledge you can answer directly. In particular,
    generate this routing class if the knowledge does not change over time and
-   you know it.
+   you know it. Then generate `answer_general_knowledge`.
 4. CLARIFY: If query is ambiguous or very general. Set `clarification` to your
    question. In particular if the user ask question about the knowledge base of
    the company must not be too general.
 5. BLOCKED: If query is harmful. Set `answer` to a polite refusal in the user's
-   language.
+   language. Then generate `answer_polite_refusal`.
 
-Prefer KNOWLEDGE_BASE for anything about ZURU Melon company.'''
+Prefer KNOWLEDGE_BASE for anything about ZURU Melon company. Remember to answer in in user's language.'''
 
 
 def route_query(
@@ -167,7 +171,8 @@ def route_query(
             f'Document: {decision.document}\n'
             f'Search Query: {decision.search_query}\n'
             f'Clarification: {decision.clarification}\n'
-            f'Answer: {decision.answer}'
+            f'Answer (refusal): {decision.answer_polite_refusal}'
+            f'Answer (knowledge base): {decision.answer_general_knowledge}'
         ),
         style='green',
     )

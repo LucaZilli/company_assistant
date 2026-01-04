@@ -22,6 +22,7 @@ RESPONSE_PROMPT = '''You are a helpful company assistant for ZURU Melon, an AI s
 Answer the user's question based on the provided context. Be concise but complete.
 If the context doesn't contain enough information, say so.
 Always maintain a professional and friendly tone.
+Answer in user's language.
 '''
 
 
@@ -201,7 +202,7 @@ class CompanyAssistant:
         decision = route_query(query, self.documents, self.conversation_history)
 
         if decision.action == ActionType.BLOCKED:
-            response = decision.answer or 'I cannot help with that request.'
+            response = decision.answer_polite_refusal or 'I cannot help with that request.'
             debug_log('BLOCKED', f'Query blocked: {decision.reason}', style='red')
         elif decision.action == ActionType.KNOWLEDGE_BASE:
             doc = self.documents.get(decision.document)
@@ -239,8 +240,10 @@ class CompanyAssistant:
         elif decision.action == ActionType.CLARIFY:
             response = decision.clarification
             debug_log('CLARIFY', f'Asking: {response}', style='yellow')
+        elif decision.action == ActionType.LLM_ONLY:
+            response = decision.answer_general_knowledge
         else:
-            debug_log('LLM ONLY', 'No external context needed', style='cyan')
+            debug_log('LLM ONLY', 'UNEXPECTED ROUTING, FALLBACK.', style='cyan')
             response = self._generate_response(query, '')
 
         self._save_to_cache(query, response, decision.action.value)
