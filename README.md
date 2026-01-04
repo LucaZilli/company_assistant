@@ -204,6 +204,12 @@ Then edit `.env` and set your API key:
 OPENROUTER_API_KEY=sk-or-v1-your-key-here
 SERPER_API_KEY==your-key-here #if you want to use serper (it is not required)
 ```
+the DEFAULT configuration uses no cache, but you are encouraged to try it by setting
+
+```env
+CACHE_ENABLED=True
+```
+and then you must rebuild the docker.
 
 ### Step 3: Build and Start
 
