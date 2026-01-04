@@ -235,7 +235,7 @@ Once inside the chat, try these example queries to see the assistant in action:
 
 **1. Company-related query:**
 ```
-You: What is our vacation policy?
+You: What is our vacation policy at zuru?
 ```
 The assistant retrieves information from the internal knowledge base and responds with company-specific details.
 
@@ -247,13 +247,13 @@ The assistant uses its intrinsic knowledge to answer general questions without s
 
 **3. Web search query:**
 ```
-You: Who won the last Champions League?
+You: chi è il primo ministro italiano?
 ```
 The assistant recognizes this requires up-to-date information and performs a web search to provide the current answer.
 
 **4. Ambiguous query requiring clarification:**
 ```
-You: How do I get access?
+You: Chi devo contattare?
 ```
 The assistant recognizes the ambiguity and asks a clarifying question before providing an answer.
 
