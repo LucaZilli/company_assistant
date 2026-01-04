@@ -14,7 +14,7 @@ services:
       - EVALUATION_MODEL_NAME=${EVALUATION_MODEL_NAME}
       - CACHE_ENABLED=${CACHE_ENABLED}
       - CACHE_TTL_DAYS=${CACHE_TTL_DAYS}
-      - DATABASE_URL={DATABASE_URL}
+      - DATABASE_URL=${DATABASE_URL}
       - MIGRATIONS_DIR=/app/migrations
     volumes:
       - ./knowledge_base:/app/knowledge_base:ro
