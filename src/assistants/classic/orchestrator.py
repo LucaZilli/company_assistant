@@ -171,7 +171,7 @@ def route_query(
             f'Document: {decision.document}\n'
             f'Search Query: {decision.search_query}\n'
             f'Clarification: {decision.clarification}\n'
-            f'Answer (refusal): {decision.answer_polite_refusal}'
+            f'Answer (refusal): {decision.answer_polite_refusal}\n'
             f'Answer (knowledge base): {decision.answer_general_knowledge}'
         ),
         style='green',
