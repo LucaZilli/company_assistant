@@ -87,8 +87,8 @@ flowchart TD
     
     C --> H[📝 Generator]
     D --> H
-    E --> H
-    F --> I[💬 Response]
+    E --> I[💬 Response]
+    F --> I
     G --> I
     H --> I
     
