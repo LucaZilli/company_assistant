@@ -180,14 +180,14 @@ Responses are evaluated using an **LLM judge** that checks content correctness a
 
 ### Prerequisites
 
-- **Docker** and **Docker Compose** installed
+- **Docker Desktop** installed
 - **OpenRouter API key** (or your own LLM API keys)
 
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/company-assistant.git
-cd company-assistant
+git clone https://github.com/LucaZilli/company_assistant.git
+cd company_assistant
 ```
 
 ### Step 2: Configure Environment
@@ -202,6 +202,7 @@ Then edit `.env` and set your API key:
 
 ```env
 OPENROUTER_API_KEY=sk-or-v1-your-key-here
+SERPER_API_KEY==your-key-here #if you want to use serper (it is not required)
 ```
 
 ### Step 3: Build and Start
@@ -217,7 +218,7 @@ docker compose up -d
 docker compose exec app python main.py db-migrate
 ```
 
-> Note: Use `docker compose` (without hyphen) for Docker Compose V2. Older versions may require `docker-compose`.
+> Note: Use `docker compose` (without hyphen) for latest version of docker desktop. Older versions may require `docker-compose`.
 
 ### Step 4: Start Chatting!
 
@@ -293,8 +294,8 @@ The assistant detects the harmful intent and politely refuses to help, following
 The `-d` flag shows all LLM inputs/outputs for understanding agent behavior:
 
 ```bash
-docker-compose exec -it app python main.py chat -d
-docker-compose exec -it app python main.py chat-langchain -d
+docker compose exec -it app python main.py chat -d
+docker compose exec -it app python main.py chat-langchain -d
 ```
 
 ---
@@ -305,23 +306,23 @@ docker-compose exec -it app python main.py chat-langchain -d
 
 ```bash
 # Evaluate Classic architecture (default)
-docker-compose exec app python evaluations/run_eval.py
+docker compose exec app python evaluations/run_eval.py
 
 # Evaluate LangChain architecture
-docker-compose exec app python evaluations/run_eval.py -a langchain
+docker compose exec app python evaluations/run_eval.py -a langchain
 ```
 
 ### Run Specific Categories
 
 ```bash
 # Single category
-docker-compose exec app python evaluations/run_eval.py -c COMPANY
+docker compose exec app python evaluations/run_eval.py -c COMPANY
 
 # Multiple categories
-docker-compose exec app python evaluations/run_eval.py -c COMPANY GENERAL WEB_SEARCH
+docker compose exec app python evaluations/run_eval.py -c COMPANY GENERAL WEB_SEARCH
 
 # List available categories
-docker-compose exec app python evaluations/run_eval.py -l
+docker compose exec app python evaluations/run_eval.py -l
 ```
 
 ### Evaluation Options
@@ -408,4 +409,4 @@ The evaluation framework made this comparison straightforward — running the sa
 
 ### Docker for Reproducibility
 
-Docker ensures the application runs identically on any machine regardless of operating system, Python version, or installed dependencies. The `docker-compose.yml` orchestrates both the application container and PostgreSQL, making setup a single command (`docker-compose up`) rather than a multi-step installation process.
+Docker ensures the application runs identically on any machine regardless of operating system, Python version, or installed dependencies. The `docker-compose.yml` orchestrates both the application container and PostgreSQL, making setup a single command (`docker compose up`) rather than a multi-step installation process.
