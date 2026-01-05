@@ -1,5 +1,3 @@
-"""LangChain-powered company assistant for ZURU."""
-
 from __future__ import annotations
 
 import typing as t
