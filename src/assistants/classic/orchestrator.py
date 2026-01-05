@@ -1,5 +1,3 @@
-"""Routing orchestrator for company assistant queries."""
-
 from __future__ import annotations
 
 from enum import Enum
