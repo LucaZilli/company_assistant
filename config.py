@@ -1,5 +1,3 @@
-"""Application configuration loaded from environment variables."""
-
 import os
 from pathlib import Path
 
